@@ -1,6 +1,7 @@
 ## Star Background in Gimp
 
-A Gimp GEGL Plugin that renders a star background 
+A Gimp GEGL Plugin that renders a star background.
+Download page is here. https://github.com/LinuxBeaver/Gimp_Plugin_Star_Background/releases
 
 ![image preview](preview1.png)
 
