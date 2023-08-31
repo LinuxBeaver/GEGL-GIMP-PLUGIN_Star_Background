@@ -63,5 +63,6 @@ ninja -C build
 Restart Gimp and go to GEGL Operations Drop Down List and look for "star background". 
 If you use Gimp 2.99.16+ go to filters>render>fun or just search for it.
 
-
+## A similar plugin to this is here, also, a worthy mention of Gimp's Spiral filter.
+https://github.com/LinuxBeaver/gegl-starburst and the default spiral filter in Gimp. 
 
