@@ -40,7 +40,7 @@ end of syntax
 
  */
 
-/*This is an embedded GEGL Graph that allows GEGL render plugins to be modified by other filters and work on transparent backgrounds
+/*This is an embedded GEGL Graph that allows  render plugins to be modified by other filters and work on transparent backgrounds
 src is GEGL's "replace" blend mode. So it is an instruction to bea*/
 
 #define beginfix \
@@ -147,7 +147,7 @@ static void attach (GeglOperation *operation)
 /*This is a simple gegl graph. It list all filters and instructs color fill to be fused
 with the behind blend mode.*/
   gegl_node_link_many (input, graph1, kali, color, behind, graph2, output, NULL);
-  gegl_node_connect_from (behind, "aux", color2, "output");
+  gegl_node_connect (behind, "aux", color2, "output");
 
 
  gegl_operation_meta_redirect (operation, "scale", kali, "input-scale"); 
