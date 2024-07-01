@@ -44,11 +44,11 @@ end of syntax
 src is GEGL's "replace" blend mode. So it is an instruction to bea*/
 
 #define beginfix \
-" src  aux=[  color value=#ffffff ]  crop  "\
+" id=1 src  aux=[  ref=1 distance-transform   ]      "\
 
 
 #define endfix \
-" crop box-blur radius=1 "\
+"  box-blur radius=1 "\
 
 
 
