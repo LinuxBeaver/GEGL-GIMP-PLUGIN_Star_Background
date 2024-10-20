@@ -44,11 +44,11 @@ end of syntax
 src is GEGL's "replace" blend mode. So it is an instruction to bea*/
 
 #define beginfix \
-" id=1 src  aux=[  ref=1 distance-transform   ]      "\
+" src  aux=[  color value=#ffffff ]  crop aux=[ ref=1 ]  "\
 
 
 #define endfix \
-"  box-blur radius=1 "\
+" crop aux=[ ref=1 ]  box-blur radius=1 "\
 
 
 
@@ -112,7 +112,7 @@ property_color (color2, _("Color Background"), "#e061ff")
 static void attach (GeglOperation *operation)
 {
   GeglNode *gegl = operation->node;
-  GeglNode *input, *graph1, *kali, *color, *color2, *graph2, *behind, *output;
+  GeglNode *input, *graph1, *kali, *crop, *color, *color2, *graph2, *behind, *output;
 
   input    = gegl_node_get_input_proxy (gegl, "input");
   output   = gegl_node_get_output_proxy (gegl, "output");
@@ -144,11 +144,16 @@ static void attach (GeglOperation *operation)
                                   "operation", "gegl:color",
                                   NULL);
 
+  crop = gegl_node_new_child (gegl,
+                                  "operation", "gegl:crop",
+                                  NULL);
+
+
 /*This is a simple gegl graph. It list all filters and instructs color fill to be fused
 with the behind blend mode.*/
-  gegl_node_link_many (input, graph1, kali, color, behind, graph2, output, NULL);
+  gegl_node_link_many (input, graph1, kali, color, behind, graph2, crop, output, NULL);
   gegl_node_connect (behind, "aux", color2, "output");
-
+  gegl_node_connect (crop, "aux", input, "output");
 
  gegl_operation_meta_redirect (operation, "scale", kali, "input-scale"); 
  gegl_operation_meta_redirect (operation, "duration", kali, "o-x"); 
